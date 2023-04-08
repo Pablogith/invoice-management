@@ -1,2 +1,8 @@
-<h1>Page From Template</h1>
-<p>default view</p>
+{% extends "core/base.html" %}
+
+{% block title %}IndexView{% endblock %}
+
+{% block content %}
+    <h1>Page From Template</h1>
+    <p>default view</p>
+{% endblock %}

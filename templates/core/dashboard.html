@@ -1,6 +1,8 @@
-{% load static %}
+{% extends "core/base.html" %}
 
-<link rel="stylesheet" href="{% static 'core/style.css' %}">
+{% block title %}IndexView{% endblock %}
 
-<h1>Dashboard</h1>
-<p>view</p>
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>view</p>
+{% endblock %}

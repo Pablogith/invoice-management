@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class Address(models.Model):
-    id = models.AutoField(primary_key=True)
     street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
@@ -24,11 +23,10 @@ class UserAccountStatus(Enum):
 
 
 class User(models.Model):
-    id = models.AutoField(primary_key=True)
     email = models.EmailField()
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, default=None)
     contact_information = models.CharField(max_length=50)
     account_status = models.CharField(max_length=20, choices=[(tag, tag.value) for tag in UserAccountStatus])
     role = models.CharField(max_length=20, choices=[(tag, tag.value) for tag in UserRole])
