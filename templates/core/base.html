@@ -3,23 +3,41 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/form.css' %}">
     {% load static tailwind_tags %}
     {% tailwind_css %}
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
-<nav>
-    <ul>
-        <li><a href="{% url 'core:index' %}">Home</a></li>
-        <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
-        <li><a href="{% url 'core:users_list' %}">Users</a></li>
-    </ul>
+<body class="bg-white dark:bg-gray-600">
+<nav class="bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <a href="#" class="text-white font-bold text-xl">Logo</a>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="{% url 'core:index' %}"
+                       class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="{% url 'core:dashboard' %}"
+                       class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                    <a href="{% url 'core:users_list' %}"
+                       class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
 
-<div class="content">
-    {% block content %}
-    {% endblock %}
+
+<div class="w-full">
+    <div class="mx-auto px-4 sm:px-6 md:mx-24 lg:px-8 lg:mx-48">
+        <div class="py-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 </div>
 </body>
 </html>

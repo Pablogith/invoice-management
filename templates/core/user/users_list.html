@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+
+{% block title %}Users List{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="mx-auto max-w-7xl flex flex-row justify-between">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Users List
+            </h1>
+            <a href="{% url 'core:user_add' %}"
+               class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                Add new user
+            </a>
+        </div>
+    </header>
+
+    {% if users_list %}
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        First Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Last Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Account Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users_list %}
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ user.email }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ user.first_name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ user.last_name }}
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                {% if user.account_status == 'active' %}
+                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
+                                {% elif user.account_status == 'deactivated' %}
+                                    <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+                                {% else %}
+                                    <div class="h-2.5 w-2.5 rounded-full bg-orange-500 mr-2"></div>
+                                {% endif %}
+                                {{ user.account_status.title }}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 flex flex-col">
+                            <a href="{% url 'core:user_update' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="{% url 'core:user_detail' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
+                            <a href="{% url 'core:user_delete' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="w-full text-center mt-10">
+            No users...
+        </div>
+    {% endif %}
+{% endblock %}

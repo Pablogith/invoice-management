@@ -1,13 +1,7 @@
 from enum import Enum
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
-
-class Address(models.Model):
-    street_address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    postal_code = models.CharField(max_length=20)
+from django.urls import reverse
+from django.contrib.auth.models import AbstractBaseUser
 
 
 class UserRole(Enum):
@@ -23,12 +17,23 @@ class UserAccountStatus(Enum):
 
 
 class User(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, default=None)
+    street_address = models.CharField(max_length=100, default='', null=False)
+    city = models.CharField(max_length=50, default='', null=False)
+    country = models.CharField(max_length=50, default='', null=False)
+    postal_code = models.CharField(max_length=20, default='', null=False)
     contact_information = models.CharField(max_length=50)
-    account_status = models.CharField(max_length=20, choices=[(tag, tag.value) for tag in UserAccountStatus])
-    role = models.CharField(max_length=20, choices=[(tag, tag.value) for tag in UserRole])
+    account_status = models.CharField(
+        max_length=20,
+        choices=[(status.value, status.value.title()) for status in UserAccountStatus],
+        default=UserAccountStatus.ACTIVE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.email}"
+
+    def get_absolute_url(self):
+        return reverse('user-detail', args=[str(self.id)])

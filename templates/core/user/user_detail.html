@@ -1,0 +1,75 @@
+{% extends "core/base.html" %}
+
+{% block title %}User Detail{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="mx-auto max-w-7xl">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                User: {{ user.first_name }} {{ user.last_name }}
+            </h1>
+        </div>
+    </header>
+    <main>
+        <div class="relative overflow-x-auto mt-10">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Email
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.email }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Country
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.country }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        City
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.postal_code }} {{ user.city }}, {{ user.street_address }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Phone Number
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.contact_information }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Account Status
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.account_status }}
+                    </td>
+                </tr>
+                <tr class="bg-white dark:bg-gray-800">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Created At
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ user.created_at }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <a href="{% url 'core:users_list' %}"
+           class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            Go Back
+        </a>
+    </main>
+{% endblock %}
