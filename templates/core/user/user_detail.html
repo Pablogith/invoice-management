@@ -3,15 +3,20 @@
 {% block title %}User Detail{% endblock %}
 
 {% block content %}
-    <header>
+    <a href="{% url 'core:users_list' %}"
+       class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        Go Back
+    </a>
+
+    <header class="mt-10">
         <div class="mx-auto max-w-7xl">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                User: {{ user.first_name }} {{ user.last_name }}
+                {{ user.first_name }} {{ user.last_name }}
             </h1>
         </div>
     </header>
     <main>
-        <div class="relative overflow-x-auto mt-10">
+        <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -66,10 +71,130 @@
             </table>
         </div>
         <br>
+        {% if user.purchaser_invoices.all %}
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Purchase Invoices
+            </h1>
 
-        <a href="{% url 'core:users_list' %}"
-           class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-            Go Back
-        </a>
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Invoice Number
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Seller
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Purchaser
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Sale Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Issue Date
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for invoice in user.purchaser_invoices.all %}
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ invoice.invoice_number }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ invoice.seller }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.purchaser }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.sale_date }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.date_of_issue }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                No Purchase Invoices
+            </h1>
+        {% endif %}
+        {#        {% for invoice in user.invoices.all %}#}
+        {#            {{ invoice.invoice_number }}#}
+        {#            {{ invoice.total }}#}
+        {#            {{ invoice.status }}#}
+        {#            {{ invoice.payment_method }}#}
+        {#            {{ invoice.payment_status }}#}
+        {#            {{ invoice.payment_date }}#}
+        {#            {{ invoice.payment_amount }}#}
+        {#            {{ invoice.payment_reference }}#}
+        {#            {{ invoice.payment_note }}#}
+        {#            {{ invoice.payment_receipt }}#}
+        {#            {{ invoice.created_at }}#}
+        {#            {{ invoice.updated_at }}#}
+        {#        {% endfor %}#}
+        <br>
+        {% if user.seller_invoices.all %}
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Seller Invoices
+            </h1>
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Invoice Number
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Seller
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Purchaser
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Sale Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Issue Date
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for invoice in user.seller_invoices.all %}
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ invoice.invoice_number }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ invoice.seller }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.purchaser }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.sale_date }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ invoice.date_of_issue }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                No Seller Invoices
+            </h1>
+        {% endif %}
     </main>
+    <div class="mt-10"></div>
 {% endblock %}
