@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    Product Details
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'core:products_list' %}"
+       class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        Go Back
+    </a>
+
+    <header class="mt-10">
+        <div class="mx-auto max-w-7xl">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {{ product.name }}
+            </h1>
+        </div>
+    </header>
+
+    <main>
+    <main>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Gross Price
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ product.gross_price }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Description
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ product.description }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Created At
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ product.created_at }}
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Updated At
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ product.updated_at }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
