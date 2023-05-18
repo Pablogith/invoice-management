@@ -1,0 +1,32 @@
+/* Style labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style text input, select elements and textareas */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Style the field when it gets focus (clicked on) */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.875rem;
+}

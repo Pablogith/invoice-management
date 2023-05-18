@@ -15,18 +15,22 @@
         <div>
             <label for="{{ form.name.id_for_label }}">Nazwa:</label>
             {{ form.name }}
+            <div class="error">{{ form.name.errors }}</div>
         </div>
         <div>
             <label for="{{ form.description.id_for_label }}">Opis:</label>
             {{ form.description }}
+            <div class="error">{{ form.description.errors }}</div>
         </div>
         <div>
             <label for="{{ form.gross_price.id_for_label }}">Cena:</label>
             {{ form.gross_price }}
+            <div class="error">{{ form.gross_price.errors }}</div>
         </div>
         <div>
             <label for="{{ form.amount.id_for_label }}">Ilość:</label>
             {{ form.amount }}
+            <div class="error">{{ form.amount.errors }}</div>
         </div>
 
         <div class="flex flex-row gap-x-5">

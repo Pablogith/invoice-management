@@ -1,9 +1,16 @@
-Uruchumienie projektu:
+Skad projektu:
+ - Paweł Reliński
+ - Paweł Słowiek
 
-1. python3 -m venv venv
-2. source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-3. pip install -r requirements.txt
-4. pip install django-tailwind
-5. python manage.py makemigrations
-6. python manage.py migrate
-7. python manage.py runserver
+
+Uruchumienie projektu:
+    1. python3 -m venv venv
+    2. source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    3. pip install -r requirements.txt
+    4. pip install django-tailwind
+    5. python manage.py makemigrations
+    6. python manage.py migrate
+    7. python manage.py runserver
+
+    Projekt będzie dostępny w przeglądarce pod adresem: http://127.0.0.1:8000/
+    Link będzie również dostępny w konsoli po uruchomieniu serwera.

@@ -15,26 +15,32 @@
         <div>
             <label for="{{ form.seller.id_for_label }}">Sprzedawca:</label>
             {{ form.seller }}
+            <div class="error">{{ form.seller.errors }}</div>
         </div>
         <div>
             <label for="{{ form.purchaser.id_for_label }}">Nabywca:</label>
             {{ form.purchaser }}
+            <div class="error">{{ form.purchaser.errors }}</div>
         </div>
         <div>
             <label for="{{ form.products.id_for_label }}">Produkty:</label>
             {{ form.products }}
+            <div class="error">{{ form.products.errors }}</div>
         </div>
         <div>
             <label for="{{ form.invoice_number.id_for_label }}">Numer faktury:</label>
             {{ form.invoice_number }}
+            <div class="error">{{ form.invoice_number.errors }}</div>
         </div>
         <div>
             <label for="{{ form.sale_date.id_for_label }}">Data sprzedaży (YYYY/MM/DD):</label>
             {{ form.sale_date }}
+            <div class="error">{{ form.sale_date.errors }}</div>
         </div>
         <div>
             <label for="{{ form.date_of_issue.id_for_label }}">Data wystawienia (YYYY/MM/DD):</label>
             {{ form.date_of_issue }}
+            <div class="error">{{ form.date_of_issue.errors }}</div>
         </div>
 
         <div class="flex flex-row gap-x-5">
