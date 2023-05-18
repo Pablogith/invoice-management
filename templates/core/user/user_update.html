@@ -1,27 +1,62 @@
 {% extends "core/base.html" %}
 
-{% block title %}User Update{% endblock %}
+{% block title %}Edytuj użytkownika{% endblock %}
 
 {% block content %}
     <header>
         <div class="mx-auto max-w-7xl">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                User Edit
+                Edytuj użytkownika
             </h1>
         </div>
     </header>
 
     <form method="post" class="mt-10">{% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="{{ form.first_name.id_for_label }}">Imię:</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label for="{{ form.last_name.id_for_label }}">Nazwisko:</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label for="{{ form.street_address.id_for_label }}">Ulica:</label>
+            {{ form.street_address }}
+        </div>
+        <div>
+            <label for="{{ form.city.id_for_label }}">Miasto:</label>
+            {{ form.city }}
+        </div>
+        <div>
+            <label for="{{ form.country.id_for_label }}">Kraj:</label>
+            {{ form.country }}
+        </div>
+        <div>
+            <label for="{{ form.postal_code.id_for_label }}">Kod pocztowy:</label>
+            {{ form.postal_code }}
+        </div>
+        <div>
+            <label for="{{ form.contact_information.id_for_label }}">Numer telefonu:</label>
+            {{ form.contact_information }}
+        </div>
+        <div>
+            <label for="{{ form.account_status.id_for_label }}">Status konta:</label>
+            {{ form.account_status }}
+        </div>
 
         <div class="flex flex-row gap-x-5">
             <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Update User
+                Zaaktualizuj
             </button>
             <a href="{% url 'core:users_list' %}"
                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                Cancel
+                Anuluj
             </a>
         </div>
     </form>

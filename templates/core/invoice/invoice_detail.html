@@ -1,14 +1,21 @@
 {% extends "core/base.html" %}
 
 {% block title %}
-    Invoice Details
+    Faktura - szczegóły
 {% endblock %}
 
 {% block content %}
     <a href="{% url 'core:invoices_list' %}"
        class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-        Go Back
+        Wróć do listy faktur
     </a>
+
+
+    <a href="{% url 'core:invoice_pdf' invoice.id %}"
+       class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        Pobierz PDF
+    </a>
+
 
     <header class="mt-10">
         <div class="mx-auto max-w-7xl">
@@ -25,7 +32,7 @@
                 <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Seller
+                        Sprzedawca
                     </th>
                     <td class="px-6 py-4">
                         {{ invoice.seller }}
@@ -33,7 +40,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Purchaser
+                        Nabywca
                     </th>
                     <td class="px-6 py-4">
                         {{ invoice.purchaser }}
@@ -41,7 +48,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Sale Date
+                        Data sprzedaży
                     </th>
                     <td class="px-6 py-4">
                         {{ invoice.sale_date }}
@@ -49,7 +56,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Date Of Issue
+                        Data wystawienia
                     </th>
                     <td class="px-6 py-4">
                         {{ invoice.date_of_issue }}
@@ -60,7 +67,7 @@
         </div>
         <br>
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Invoice Products
+            Produkty
         </h1>
         {% if invoice.products.all %}
             <div class="relative overflow-x-auto">
@@ -68,19 +75,19 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Name
+                            Nazwa
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Price
+                            Cena brutto
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Amount
+                            Ilość
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Description
+                            Opis
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Created At
+                            Data utworzenia
                         </th>
                     </tr>
                     </thead>
@@ -110,7 +117,7 @@
             </div>
         {% else %}
             <p class="font-normal text-gray-700 dark:text-gray-400">
-                Empty...
+                Brak produktów
             </p>
         {% endif %}
     </main>

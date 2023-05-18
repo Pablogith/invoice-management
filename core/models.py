@@ -54,8 +54,8 @@ class User(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=250)
     description = models.CharField(max_length=50)
-    net_price = models.DecimalField(max_digits=10, decimal_places=2)
-    tax_rate = models.DecimalField(max_digits=10, decimal_places=2)
+    net_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    tax_rate = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     gross_price = models.DecimalField(max_digits=10, decimal_places=2)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=1)
     created_at = models.DateTimeField(auto_now_add=True)

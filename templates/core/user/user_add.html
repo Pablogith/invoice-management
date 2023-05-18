@@ -1,83 +1,61 @@
 {% extends "core/base.html" %}
 
-{% block title %}Add New User{% endblock %}
+{% block title %}Dodaj użytkownika{% endblock %}
 
 {% block content %}
     <header>
         <div class="mx-auto max-w-7xl flex flex-row justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Add New User
+                Dodaj użytkownika
             </h1>
         </div>
     </header>
 
     <form method="post" class="mt-10">{% csrf_token %}
-        {{ form.as_p }}
-{#        <div class="relative z-0 w-full mb-6 group">#}
-{#            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                E-mail#}
-{#            </label>#}
-{#            {{ form.email }}#}
-{#            <input type="email" id="email"#}
-{#                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#        </div>#}
-{#        <div class="relative z-0 w-full mb-6 group">#}
-{#            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                Password#}
-{#            </label>#}
-{#            <input type="password" id="password"#}
-{#                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#        </div>#}
-{#        <div class="relative z-0 w-full mb-6 group">#}
-{#            <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                Repeat Password#}
-{#            </label>#}
-{#            <input type="password" id="repeat-password"#}
-{#                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#        </div>#}
-{#        <div class="grid md:grid-cols-2 md:gap-6">#}
-{#            <div class="relative z-0 w-full mb-6 group">#}
-{#                <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                    First Name#}
-{#                </label>#}
-{#                <input type="text" id="first-name"#}
-{#                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#            </div>#}
-{#            <div class="relative z-0 w-full mb-6 group">#}
-{#                <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                    Last Name#}
-{#                </label>#}
-{#                <input type="text" id="last-name"#}
-{#                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="grid md:grid-cols-2 md:gap-6">#}
-{#            <div class="relative z-0 w-full mb-6 group">#}
-{#                <label for="account-status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                    Account Status#}
-{#                </label>#}
-{#                <select id="account-status"#}
-{#                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#                    <option value="active">Active</option>#}
-{#                    <option value="deactivated">Deactivated</option>#}
-{#                    <option value="suspended">Suspended</option>#}
-{#                </select>#}
-{#            </div>#}
-{#            <div class="relative z-0 w-full mb-6 group">#}
-{#                <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">#}
-{#                    Phone Number#}
-{#                </label>#}
-{#                <input type="text" id="phone-number"#}
-{#                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">#}
-{#            </div>#}
-{#        </div>#}
+        <div>
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="{{ form.first_name.id_for_label }}">Imię:</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label for="{{ form.last_name.id_for_label }}">Nazwisko:</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label for="{{ form.street_address.id_for_label }}">Ulica:</label>
+            {{ form.street_address }}
+        </div>
+        <div>
+            <label for="{{ form.city.id_for_label }}">Miasto:</label>
+            {{ form.city }}
+        </div>
+        <div>
+            <label for="{{ form.country.id_for_label }}">Kraj:</label>
+            {{ form.country }}
+        </div>
+        <div>
+            <label for="{{ form.postal_code.id_for_label }}">Kod pocztowy:</label>
+            {{ form.postal_code }}
+        </div>
+        <div>
+            <label for="{{ form.contact_information.id_for_label }}">Numer telefonu:</label>
+            {{ form.contact_information }}
+        </div>
+        <div>
+            <label for="{{ form.account_status.id_for_label }}">Status konta:</label>
+            {{ form.account_status }}
+        </div>
+
         <div class="flex flex-row gap-x-5">
             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Add New User
+                Dodaj
             </button>
             <a href="{% url 'core:users_list' %}"
                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                Cancel
+                Anuluj
             </a>
         </div>
     </form>

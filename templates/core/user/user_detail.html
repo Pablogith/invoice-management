@@ -1,11 +1,11 @@
 {% extends "core/base.html" %}
 
-{% block title %}User Detail{% endblock %}
+{% block title %}Szczegóły użytkownika{% endblock %}
 
 {% block content %}
     <a href="{% url 'core:users_list' %}"
        class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-        Go Back
+        Wróć do listy użytkowników
     </a>
 
     <header class="mt-10">
@@ -29,7 +29,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Country
+                        Kraj
                     </th>
                     <td class="px-6 py-4">
                         {{ user.country }}
@@ -37,7 +37,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        City
+                        Miasto
                     </th>
                     <td class="px-6 py-4">
                         {{ user.postal_code }} {{ user.city }}, {{ user.street_address }}
@@ -45,7 +45,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Phone Number
+                        Numer telefonu
                     </th>
                     <td class="px-6 py-4">
                         {{ user.contact_information }}
@@ -53,7 +53,7 @@
                 </tr>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Account Status
+                        Status konta
                     </th>
                     <td class="px-6 py-4">
                         {{ user.account_status }}
@@ -61,7 +61,7 @@
                 </tr>
                 <tr class="bg-white dark:bg-gray-800">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Created At
+                        Data utworzenia
                     </th>
                     <td class="px-6 py-4">
                         {{ user.created_at }}
@@ -72,7 +72,7 @@
         </div>
         <br>
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Purchase Invoices
+            Faktury zakupu
         </h1>
         {% if user.purchaser_invoices.all %}
             <div class="relative overflow-x-auto">
@@ -80,19 +80,19 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Invoice Number
+                            Numer faktury
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Seller
+                            Sprzedawca
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Purchaser
+                            Nabywca
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Sale Date
+                            Data sprzedaży
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Actions
+                            Akcje
                         </th>
                     </tr>
                     </thead>
@@ -115,7 +115,7 @@
                             <td class="px-6 py-4">
                                 <a href="{% url 'core:invoice_pdf' invoice.id %}"
                                    class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                    Download
+                                    Pobierz fakturę
                                 </a>
                             </td>
                         </tr>
@@ -125,7 +125,7 @@
             </div>
         {% else %}
             <p class="font-normal text-gray-700 dark:text-gray-400">
-                Empty...
+                Brak faktur
             </p>
         {% endif %}
         {#        {% for invoice in user.invoices.all %}#}
@@ -144,7 +144,7 @@
         {#        {% endfor %}#}
         <br>
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Seller Invoices
+            Faktury sprzedaży
         </h1>
         {% if user.seller_invoices.all %}
             <div class="relative overflow-x-auto">
@@ -152,19 +152,19 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Invoice Number
+                            Numer faktury
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Seller
+                            Sprzedawca
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Purchaser
+                            Nabywca
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Sale Date
+                            Data sprzedaży
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Actions
+                            Akcje
                         </th>
                     </tr>
                     </thead>
@@ -187,7 +187,7 @@
                             <td class="px-6 py-4">
                                 <a href="{% url 'core:invoice_pdf' invoice.id %}"
                                    class="py-2.5 px-5 mr-2 mb-2 mt-10 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                    Download
+                                    Pobierz fakturę
                                 </a>
                             </td>
                         </tr>
@@ -197,7 +197,7 @@
             </div>
         {% else %}
             <p class="font-normal text-gray-700 dark:text-gray-400">
-                Empty...
+                Brak faktur
             </p>
         {% endif %}
     </main>

@@ -1,26 +1,42 @@
 {% extends "core/base.html" %}
 
-{% block title %}Add New Product{% endblock %}
+{% block title %}Nowy produkt{% endblock %}
 
 {% block content %}
     <header>
         <div class="mx-auto max-w-7xl flex flex-row justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Add New Product
+                Dodaj nowy produkt
             </h1>
         </div>
     </header>
 
     <form method="post" class="mt-10">{% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            <label for="{{ form.name.id_for_label }}">Nazwa:</label>
+            {{ form.name }}
+        </div>
+        <div>
+            <label for="{{ form.description.id_for_label }}">Opis:</label>
+            {{ form.description }}
+        </div>
+        <div>
+            <label for="{{ form.gross_price.id_for_label }}">Cena:</label>
+            {{ form.gross_price }}
+        </div>
+        <div>
+            <label for="{{ form.amount.id_for_label }}">Ilość:</label>
+            {{ form.amount }}
+        </div>
+
         <div class="flex flex-row gap-x-5">
             <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Add New Product
+                Dodaj
             </button>
             <a href="{% url 'core:products_list' %}"
                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                Cancel
+                Anuluj
             </a>
         </div>
     </form>

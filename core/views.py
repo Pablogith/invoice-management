@@ -7,6 +7,7 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import inch
+from .forms import InvoiceForm, ProductForm, UserForm
 
 
 class IndexView(generic.TemplateView):
@@ -34,28 +35,14 @@ class InvoiceDetailView(generic.DetailView):
 
 class InvoiceAdd(generic.CreateView):
     model = Invoice
-    fields = [
-        'seller',
-        'purchaser',
-        'products',
-        'invoice_number',
-        'sale_date',
-        'date_of_issue',
-    ]
+    form_class = InvoiceForm
     template_name = 'core/invoice/invoice_add.html'
     success_url = reverse_lazy('core:invoices_list')
 
 
 class InvoiceUpdate(generic.UpdateView):
     model = Invoice
-    fields = [
-        'seller',
-        'purchaser',
-        'products',
-        'invoice_number',
-        'sale_date',
-        'date_of_issue',
-    ]
+    form_class = InvoiceForm
     template_name = 'core/invoice/invoice_update.html'
     success_url = reverse_lazy('core:invoices_list')
 
@@ -83,28 +70,14 @@ class ProductDetailView(generic.DetailView):
 
 class ProductAdd(generic.CreateView):
     model = Product
-    fields = [
-        'name',
-        'description',
-        'net_price',
-        'tax_rate',
-        'gross_price',
-        'amount'
-    ]
+    form_class = ProductForm
     template_name = 'core/product/product_add.html'
     success_url = reverse_lazy('core:products_list')
 
 
 class ProductUpdate(generic.UpdateView):
     model = Product
-    fields = [
-        'name',
-        'description',
-        'net_price',
-        'tax_rate',
-        'gross_price',
-        'amount'
-    ]
+    form_class = ProductForm
     template_name = 'core/product/product_update.html'
     success_url = reverse_lazy('core:products_list')
 
@@ -132,34 +105,14 @@ class UserDetailView(generic.DetailView):
 
 class UserAdd(generic.CreateView):
     model = User
-    fields = [
-        'email',
-        'first_name',
-        'last_name',
-        'street_address',
-        'city',
-        'country',
-        'postal_code',
-        'contact_information',
-        'account_status',
-    ]
+    form_class = UserForm
     template_name = 'core/user/user_add.html'
     success_url = reverse_lazy('core:users_list')
 
 
 class UserUpdate(generic.UpdateView):
     model = User
-    fields = [
-        'email',
-        'first_name',
-        'last_name',
-        'street_address',
-        'city',
-        'country',
-        'postal_code',
-        'contact_information',
-        'account_status',
-    ]
+    form_class = UserForm
     template_name = 'core/user/user_update.html'
     success_url = reverse_lazy('core:users_list')
 
@@ -181,21 +134,21 @@ def generate_invoice(request, invoice_id):
     pdf.setFillColor(colors.black)
 
     pdf.setFont('Helvetica-Bold', 16)
-    pdf.drawString(1 * inch, 10.5 * inch, 'Invoice')
+    pdf.drawString(1 * inch, 10.5 * inch, 'Faktura')
     pdf.setFont('Helvetica', 12)
     pdf.drawString(1 * inch, 10.25 * inch, user.country)
     pdf.drawString(1 * inch, 10 * inch, f'{user.city} {user.postal_code}, {user.street_address}')
-    pdf.drawString(1 * inch, 9.75 * inch, f'Phone: {user.contact_information}')
+    pdf.drawString(1 * inch, 9.75 * inch, f'Numer telefonu: {user.contact_information}')
     pdf.drawString(1 * inch, 9.5 * inch, f'Email: {user.email}')
 
     pdf.setLineWidth(1)
     pdf.line(1 * inch, 5.75 * inch, 8 * inch, 5.75 * inch)
 
     pdf.setFont('Helvetica-Bold', 12)
-    pdf.drawString(1 * inch, 9 * inch, 'Item')
-    pdf.drawString(3 * inch, 9 * inch, 'Quantity')
-    pdf.drawString(4 * inch, 9 * inch, 'Price')
-    pdf.drawString(5 * inch, 9 * inch, 'Total')
+    pdf.drawString(1 * inch, 9 * inch, 'Przedmiot')
+    pdf.drawString(3 * inch, 9 * inch, 'Ilosc')
+    pdf.drawString(4 * inch, 9 * inch, 'Cena')
+    pdf.drawString(5 * inch, 9 * inch, 'Wartosc')
     pdf.line(1 * inch, 8.9 * inch, 6.5 * inch, 8.9 * inch)
 
     y = 8.5 * inch
@@ -203,14 +156,14 @@ def generate_invoice(request, invoice_id):
         pdf.setFont('Helvetica', 12)
         pdf.drawString(1 * inch, y, product.name)
         pdf.drawString(3 * inch, y, str(product.amount))
-        pdf.drawString(4 * inch, y, '${:,.2f}'.format(product.gross_price))
-        pdf.drawString(5 * inch, y, '${:,.2f}'.format(product.amount * product.gross_price))
+        pdf.drawString(4 * inch, y, '{:,.2f} zl'.format(product.gross_price))
+        pdf.drawString(5 * inch, y, '{:,.2f} zl'.format(product.amount * product.gross_price))
         y -= 0.25 * inch
 
     total = sum(product.amount * product.gross_price for product in products)
     pdf.setFont('Helvetica-Bold', 12)
-    pdf.drawString(4 * inch, y - 0.5 * inch, 'Total:')
-    pdf.drawString(5 * inch, y - 0.5 * inch, '${:,.2f}'.format(total))
+    pdf.drawString(4 * inch, y - 0.5 * inch, 'Suma:')
+    pdf.drawString(5 * inch, y - 0.5 * inch, '{:,.2f} zl'.format(total))
 
     pdf.showPage()
     pdf.save()

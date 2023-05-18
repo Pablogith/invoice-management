@@ -1,16 +1,16 @@
 {% extends "core/base.html" %}
 
-{% block title %}Users List{% endblock %}
+{% block title %}Użytkownicy{% endblock %}
 
 {% block content %}
     <header>
         <div class="mx-auto max-w-7xl flex flex-row justify-between">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Users List
+                Lista użytkowników
             </h1>
             <a href="{% url 'core:user_add' %}"
                class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                Add new user
+                Dodaj użytkownika
             </a>
         </div>
     </header>
@@ -24,16 +24,16 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        First Name
+                        Imię
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Last Name
+                        Nazwisko
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Account Status
+                        Status konta
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Action
+                        Akcje
                     </th>
                 </tr>
                 </thead>
@@ -62,9 +62,9 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 flex flex-col">
-                            <a href="{% url 'core:user_update' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="{% url 'core:user_detail' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
-                            <a href="{% url 'core:user_delete' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                            <a href="{% url 'core:user_update' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edytuj</a>
+                            <a href="{% url 'core:user_detail' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Szczegóły</a>
+                            <a href="{% url 'core:user_delete' user.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Usuń</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -73,7 +73,7 @@
         </div>
     {% else %}
         <div class="w-full text-center mt-10">
-            No users...
+            Brak użytkowników
         </div>
     {% endif %}
 {% endblock %}
