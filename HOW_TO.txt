@@ -2,6 +2,12 @@ Skad projektu:
  - Paweł Reliński
  - Paweł Słowiek
 
+ Projekt jest realizacją projektu zaliczeniowego z przedmiotu "Języki skryptowe".
+ Aplikacja webowa została napisana w języku Python z wykorzystaniem frameworka Django.
+ Za frontend odpowiada framework TailwindCSS.
+ Za backend odpowiada framework Django.
+ Program służy do generowanie faktur w formacie PDF.
+
 
 Uruchumienie projektu:
     1. python3 -m venv venv
